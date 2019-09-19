@@ -11,7 +11,7 @@ var values = {
 values.invMass = 1 / values.mass;
 
 var path, springs;
-var size = view.size * [1.2, 1];
+var size = canvas.size * [1.2, 1];
 
 var Spring = function(a, b, strength, restLength) {
 	this.a = a;
@@ -60,7 +60,7 @@ function createPath(strength) {
 function onResize() {
 	if (path)
 		path.remove();
-	size = view.bounds.size * [2, 1];
+	size = canvas.bounds.size * [2, 1];
 	path = createPath(0.1);
 }
 
