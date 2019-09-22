@@ -12,17 +12,14 @@
     
     const olas = []
 
-    let currentWaiting = null
-    let currentActive = null
-
     const crearLineas = () => {
         
         let ola
 
-        // let fondo = new Paper.Path.Rectangle(
-        //     new Paper.Point(0,0),
-        //     new Paper.Point(window.innerWidth,window.innerHeight),
-        // );
+        let fondo = new Paper.Path.Rectangle(
+            new Paper.Point(0,0),
+            new Paper.Point(window.innerWidth,window.innerHeight),
+        );
 
         // fondo.fillColor = new Paper.Color(0.01,0.3,0.7+(count%130/1300));
 
@@ -31,7 +28,7 @@
         {
             ola = new Paper.Path();
             
-            ola.strokeColor = new Paper.Color(0.7,0.8,0.9);
+            ola.strokeColor = new Paper.Color((i%90)/900,(i%8*13)/500,0.3+i/15);
             ola.strokeWidth = 1;
 
             let separacion = canvas.clientHeight / 30;
@@ -62,17 +59,6 @@
 
     onMount(()=>{
         
-        if( !! canvas ) {
-
-            canvas.addEventListener("mousemove", (e)=>{
-                currentWaiting = Math.floor((e.clientX/window.innerWidth)*80);
-            })
-
-            canvas.addEventListener("click", (e)=>{
-                currentActive = Math.floor((e.clientX/window.innerWidth)*80);
-            })
-        
-        }
         
         let frame;
         let count=0;
@@ -101,8 +87,7 @@
 
                 let separacion = canvas.clientHeight / 30;
 
-                if( count%1 == 0 ) {
-
+                if(count%1==0) {
                     for (var i = 0; i < 80; i++) {
 
                         let ola = olas[i];
@@ -114,25 +99,12 @@
                             const segment = ola.segments[j];
                             
                             segment.point.x = (i*colW) - (
-                                    Math.sin((count%300)/300)
-                                    * 15
+                                Math.cos(j)
+                                * ((count%100)*10) **
+                                Math.sin(
+                                    (j*2) % 36
+                                )
                             )
-
-                            if( i == currentWaiting ) {
-                                segment.point.x = segment.point.x + (
-                                    Math.cos((i-count%300)/300)/2
-                                    * 1.5
-                                )
-                            }
-                            if( i == currentActive ) {
-                                ola.strokeWidth=3
-                                segment.point.x = segment.point.x + (
-                                    Math.cos((i-count%3)/3)
-                                    * 33
-                                )
-                            } else {
-                                ola.strokeWidth = 1
-                            }
 
                             // segment.point.y = j * separacion
 
