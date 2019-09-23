@@ -6,6 +6,9 @@
 	import Mar3 from "./animaciones/Mar3.svelte";
 	import Mar4 from "./animaciones/Mar4.svelte";
 	import Mar5 from "./animaciones/Mar5.svelte";
+
+	import Raphael1 from "./animaciones/Raphael1.svelte";
+	
 	import Inicio from "./Inicio.svelte";
 
 	export let url = "";
@@ -48,6 +51,9 @@
 				<li>
 					<Link to="/mar5">Mar 5</Link>
 				</li>
+				<li>
+					<Link to="/raphael1">raphael1</Link>
+				</li>
 			</ul>
 		</nav>
 
@@ -60,6 +66,9 @@
 		<Route path="/mar3" component="{Mar3}" />
 		<Route path="/mar4" component="{Mar4}" />
 		<Route path="/mar5" component="{Mar5}" />
+		
+		<Route path="/raphael1" component="{Raphael1}" />
+		
 		<Route path="/" component="{Inicio}" />
 
 	</main>
